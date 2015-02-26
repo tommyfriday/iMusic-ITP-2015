@@ -9,19 +9,16 @@
 
 		<style>
 		html{
-			    /* This image will be displayed fullscreen */
-		background: url('images/fishGIF.gif') no-repeat center center;
-		
+		/* This image will be displayed fullscreen */
+		background: url('fishGIF.gif') no-repeat center center;
 		/* Ensure the html element always takes up the full height of the browser window */
 	    min-height:100%;
-
 	    /* The Magic */
 	    background-size:cover;
 		}
-
 		body{
-			/*workaround for some mobile browsers*/
-			background-size: cover;
+		/*workaround for some mobile browsers*/
+		background-size: cover;
 		}
 		</style>
 	</head>
@@ -29,12 +26,16 @@
 		<!-- <canvas nx="slider"></canvas> -->
 
 		<script>
-		var mappedSlider = 0;
-		var slider1 = document.getElementById('slider1');
 
-		//this function is where we determine where the mouse is in order to vary the volume
+function playSound (mouseX){
+		// var MyClass = function(){
+		// function MyClass() {
+
+		//MyClass.prototype.window.onmousemove = function(event){
+
 		window.onmousemove = function(event){
 
+			this.x = mouseX;
 			if (event != null){
 				console.log("mouse is moved");
 				var val = ( ( event.x / window.innerWidth ) * 2 - 1 ) * 60;
@@ -43,14 +44,7 @@
 
 			} else {
 				console.log("no argument here?");
-			}
-
-			//mappedSlider = slider1.val.value * 100 - 48;
-
-			// console.log(mappedSlider);	
-			// player3.setVolume(mappedSlider);
-			
-		};
+			}}
 
 			var loaded = 0;
 			function testLoaded(){
@@ -92,7 +86,7 @@
 			player2.loop = true;
 
 
-					var player3 = new Tone.Player("./samples/xyloArpeggio.mp3", function(){
+			var player3 = new Tone.Player("./samples/xyloArpeggio.mp3", function(){
 				loaded++;
 				testLoaded();
 			});
@@ -107,6 +101,39 @@
 			player3.retrigger = true;
 
 			// var players = [player0, player1, player2, player3];
+		}
+
+		// }
+
+		var mappedSlider = 0;
+		var slider1 = document.getElementById('slider1');
+
+		//public member variable
+		// MyClass.prototype.publicVar = "My public variable";
+
+		// //public member function
+		// MyClass.prototype.publicFunction = function() {
+  //   	alert( this.publicVar );
+		// }
+
+		// //create an instance
+		// var tomsClass = new MyClass();
+
+		// //run a member function
+		// tomsClass.publicFunction();    
+		// //Alert: "My Public Variable"
+
+
+		
+
+			//mappedSlider = slider1.val.value * 100 - 48;
+
+			// console.log(mappedSlider);	
+			// player3.setVolume(mappedSlider);
+			
+		// };
+
+			
 
 		</script>
 	</body>

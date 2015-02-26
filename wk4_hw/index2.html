@@ -29,10 +29,10 @@
 		<!-- <canvas nx="slider"></canvas> -->
 
 		<script>
-		var mappedSlider = 0;
-		var slider1 = document.getElementById('slider1');
 
-		//this function is where we determine where the mouse is in order to vary the volume
+var MyClass = function(){
+		// function MyClass() {
+
 		window.onmousemove = function(event){
 
 			if (event != null){
@@ -44,13 +44,6 @@
 			} else {
 				console.log("no argument here?");
 			}
-
-			//mappedSlider = slider1.val.value * 100 - 48;
-
-			// console.log(mappedSlider);	
-			// player3.setVolume(mappedSlider);
-			
-		};
 
 			var loaded = 0;
 			function testLoaded(){
@@ -107,6 +100,39 @@
 			player3.retrigger = true;
 
 			// var players = [player0, player1, player2, player3];
+		}}
+
+		// }
+
+		var mappedSlider = 0;
+		var slider1 = document.getElementById('slider1');
+
+		//public member variable
+		MyClass.prototype.publicVar = "My public variable";
+
+		//public member function
+		MyClass.prototype.publicFunction = function() {
+    	alert( this.publicVar );
+		}
+
+		//create an instance
+		var tomsClass = new MyClass();
+
+		//run a member function
+		tomsClass.publicFunction();    
+		//Alert: "My Public Variable"
+
+
+		
+
+			//mappedSlider = slider1.val.value * 100 - 48;
+
+			// console.log(mappedSlider);	
+			// player3.setVolume(mappedSlider);
+			
+		// };
+
+			
 
 		</script>
 	</body>
