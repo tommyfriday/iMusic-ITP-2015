@@ -27,42 +27,10 @@
 
 		<script>
 
-function playSound (mouseX){
-		// var MyClass = function(){
-		// function MyClass() {
+function Arpeggio (mouseX){
+		this.x = mouseX;
 
-		//MyClass.prototype.window.onmousemove = function(event){
-
-		window.onmousemove = function(event){
-
-			this.x = mouseX;
-			if (event != null){
-				console.log("mouse is moved");
-				var val = ( ( event.x / window.innerWidth ) * 2 - 1 ) * 60;
-				console.log(val);
-				player3.setVolume(val);
-
-			} else {
-				console.log("no argument here?");
-			}}
-
-			var loaded = 0;
-			function testLoaded(){
-				if (loaded === 4){
-					console.log("it's all loaded");
-					//do something with all the samples
-					// for (var i = 0; i < players.length; i++){
-					// 	players[0,1].start();
-					// 	console.log(players[i].now());
-					// }
-
-					//this code plays only the first two mp3 files
-					//players[2].start();
-					player3.start();
-				}
-			}
-
-			var player0 = new Tone.Player("./samples/harpAB2.mp3", function(){
+		var player0 = new Tone.Player("./samples/harpAB2.mp3", function(){
 				loaded++;
 				testLoaded();
 			});
@@ -100,13 +68,51 @@ function playSound (mouseX){
 			player2.retrigger = true;
 			player3.retrigger = true;
 
+
+
+		//MyClass.prototype.window.onmousemove = function(event){
+
+		window.onmousemove = function(event){
+
+			console.log(event);
+
+			if (event != null){
+				console.log("mouse is moved");
+				var val = (( event.x / window.innerWidth) * 2 - 1 ) * 60;
+				console.log(val);
+				player3.setVolume(val);
+
+			} else {
+				console.log("no argument here?");
+			}
+
+			var loaded = 0;
+			function testLoaded(){
+				if (loaded === 4){
+					console.log("it's all loaded");
+					//do something with all the samples
+					// for (var i = 0; i < players.length; i++){
+					// 	players[0,1].start();
+					// 	console.log(players[i].now());
+					// }
+
+					//this code plays only the first two mp3 files
+					//players[2].start();
+					player3.start();
+				}
+			}
+
+			
 			// var players = [player0, player1, player2, player3];
-		}
+		};
+	}
+
+	var tommy = new Arpeggio();
 
 		// }
 
-		var mappedSlider = 0;
-		var slider1 = document.getElementById('slider1');
+		// var mappedSlider = 0;
+		// var slider1 = document.getElementById('slider1');
 
 		//public member variable
 		// MyClass.prototype.publicVar = "My public variable";
