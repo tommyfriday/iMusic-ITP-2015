@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>	
+	<script type="text/javascript" src="http://cdn.tonejs.org/r3/Tone.min.js"></script>	
+	<script type="text/javascript" src="http://rawgit.com/lsu-emdm/nexusUI/master/dist/nexusUI.js"></script>	
+	
+
+		<style>
+		html{
+			    /* This image will be displayed fullscreen */
+		background: url('images/fishGIF.gif') no-repeat center center;
+		
+		/* Ensure the html element always takes up the full height of the browser window */
+	    min-height:100%;
+
+	    /* The Magic */
+	    background-size:cover;
+		}
+
+		body{
+			/*workaround for some mobile browsers*/
+			background-size: cover;
+		}
+		</style>
+	</head>
+	<body>
+		<!-- <canvas nx="slider"></canvas> -->
+
+		<script>
+
+var MyClass = function(){
+		// function MyClass() {
+
+		window.onmousemove = function(event){
+
+			if (event != null){
+				console.log("mouse is moved");
+				var val = ( ( event.x / window.innerWidth ) * 2 - 1 ) * 60;
+				console.log(val);
+				player3.setVolume(val);
+
+			} else {
+				console.log("no argument here?");
+			}
+
+			var loaded = 0;
+			function testLoaded(){
+				if (loaded === 4){
+					console.log("it's all loaded");
+					//do something with all the samples
+					// for (var i = 0; i < players.length; i++){
+					// 	players[0,1].start();
+					// 	console.log(players[i].now());
+					// }
+
+					//this code plays only the first two mp3 files
+					//players[2].start();
+					player3.start();
+				}
+			}
+
+			var player0 = new Tone.Player("./samples/harpAB2.mp3", function(){
+				loaded++;
+				testLoaded();
+			});
+			player0.toMaster();
+			player0.loop = true;
+			// player0.setVolume.value = -10;
+
+			var player1 = new Tone.Player("./samples/organAB.mp3", function(){
+				loaded++;
+				testLoaded();
+			});
+			player1.toMaster();
+			player1.loop = true;
+			// player1.setVolume.value = -10;
+
+			var player2 = new Tone.Player("./samples/pizzicato.mp3", function(){
+				loaded++;
+				testLoaded();
+			});
+			player2.toMaster();
+			player2.loop = true;
+
+
+					var player3 = new Tone.Player("./samples/xyloArpeggio.mp3", function(){
+				loaded++;
+				testLoaded();
+			});
+			player3.toMaster();
+			player3.loop = true;
+	
+			player3.start();
+
+			player0.retrigger = true;
+			player1.retrigger = true;
+			player2.retrigger = true;
+			player3.retrigger = true;
+
+			// var players = [player0, player1, player2, player3];
+		}}
+
+		// }
+
+		var mappedSlider = 0;
+		var slider1 = document.getElementById('slider1');
+
+		//public member variable
+		MyClass.prototype.publicVar = "My public variable";
+
+		//public member function
+		MyClass.prototype.publicFunction = function() {
+    	alert( this.publicVar );
+		}
+
+		//create an instance
+		var tomsClass = new MyClass();
+
+		//run a member function
+		tomsClass.publicFunction();    
+		//Alert: "My Public Variable"
+
+
+		
+
+			//mappedSlider = slider1.val.value * 100 - 48;
+
+			// console.log(mappedSlider);	
+			// player3.setVolume(mappedSlider);
+			
+		// };
+
+			
+
+		</script>
+	</body>
+</html>
