@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>	
+	<script type="text/javascript" src="http://cdn.tonejs.org/r3/Tone.min.js"></script>	
+	<script type="text/javascript" src="http://rawgit.com/lsu-emdm/nexusUI/master/dist/nexusUI.js"></script>	
+	
+
+		<style>
+		html{
+			    /* This image will be displayed fullscreen */
+		background: url('images/fishGIF.gif') no-repeat center center;
+		
+		/* Ensure the html element always takes up the full height of the browser window */
+	    min-height:100%;
+
+	    /* The Magic */
+	    background-size:cover;
+		}
+
+		body{
+			/*workaround for some mobile browsers*/
+			background-size: cover;
+		}
+		</style>
+	</head>
+	<body>
+		<!-- <canvas nx="slider"></canvas> -->
+
+		<script>
+		var mappedSlider = 0;
+		var slider1 = document.getElementById('slider1');
+
+		//this function is where we determine where 
+		//the mouse is in order to vary the volume
+		window.onmousemove = function(event){
+
+			if (event != null){
+				console.log("mouse is moved");
+				var val = ( ( event.x / window.innerWidth ) * 2 - 1 ) * 60;
+				console.log(val);
+				player3.setVolume(val);
+			} else {
+				console.log("no argument here?");
+			}			
+		};
+
+			var loaded = 0;
+			function testLoaded(){
+				if (loaded === 4){
+					console.log("it's all loaded");
+					player3.start();
+				}
+			}
+
+			var player3 = new Tone.Player("./samples/xyloArpeggio.mp3", function(){
+			loaded++;
+			testLoaded();
+			});
+			player3.toMaster();
+			player3.loop = true;
+	
+			player3.start();
+			player3.retrigger = true;
+
+		</script>
+	</body>
+</html>

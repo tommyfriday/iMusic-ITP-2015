@@ -1,0 +1,68 @@
+/*
+create a simple page with a sample loaded 
+so you can change the playbackRate
+*/
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>	
+	<script type="text/javascript" src="http://cdn.tonejs.org/r3/Tone.min.js"></script>	
+	<script type="text/javascript" src="http://rawgit.com/lsu-emdm/nexusUI/master/dist/nexusUI.js"></script>	
+	
+
+		<style>
+	
+
+		</style>
+	</head>
+	<body>
+
+
+		<script>
+
+
+
+		var loaded = 0;
+		function testLoaded(){
+			if (loaded ===4){
+				console.log("sample loaded");
+				player.start();
+			}
+		}
+
+		var player = new Tone.Player("./samples/organAB.mp3", function(){
+			loaded++;
+			testLoaded();
+		});
+		player.toMaster();
+		player.loop = true;
+		player.setVolume.value = -10;
+		player.start();
+
+
+
+
+
+
+
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

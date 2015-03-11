@@ -1,0 +1,123 @@
+/*
+Load a sample so you can change the playbackRate
+*/
+
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>	
+	<script type="text/javascript" src="http://cdn.tonejs.org/latest/Tone.min.js"></script>
+	<script type="text/javascript" src="http://rawgit.com/lsu-emdm/nexusUI/master/dist/nexusUI.js"></script>	
+	<script src="../p5.min.js"></script>
+    <script src="sketch.js"></script>
+		<style>
+		
+		html{
+		/* This image will be displayed fullscreen */
+		background: url('images/gradientBlend.gif') no-repeat center center;
+		
+		/* Ensure the html element always takes up the full height of the browser window */
+	    min-height:100%;
+
+	    /* The Magic */
+	    background-size:cover;
+		}
+
+		body{
+		/*workaround for some mobile browsers*/
+		background-size: cover;
+		}
+
+		</style>
+	</head>
+	<body>
+		<div>
+				S, D, and F, will change playbackRate
+		</div>
+
+		<!-- <canvas nx="typewriter" id="typewriter"></canvas> -->
+		<script type="text/javascript">
+
+		
+
+
+
+		//document.body.style.backgroundColor = "blue";
+		
+
+
+		// matrix1.row = 20;
+		// matrix1.init()
+		// matrix1.col = 20;
+		// matrix1.init()
+
+		Tone.Transport.start();
+
+		var myOsc = new Tone.Oscillator(60, "square");
+		//myOsc.start();
+		myOsc.toMaster();
+		//myOsc.setVolume(-10);
+
+
+		var loaded = 0;
+		function testLoaded(){
+			if (loaded ===4){
+				console.log("sample loaded");
+				//player.start();
+			}
+		}
+
+		var player = new Tone.Player("./samples/krackatoa_-_06_-_Rattle_your_Cage.mp3", function(){
+			loaded++;
+			testLoaded();
+		});
+
+		//invoked when all of the queued samples are done 	loading
+		Tone.Buffer.onload = function(){
+		player.start();
+   	 	console.log("everything is loaded");
+		};
+
+		player.toMaster();
+		player.loop = true;
+		//player.setVolume.value = -10;
+		player.retrigger = true;
+		
+
+
+
+		// var userSetsRate = playbackRate;
+		// player.playbackRate = playBackSpeed;
+
+			var playBackSpeed = {
+		// "S" : "C2",
+		// "D" : "E4",
+		// "F" : "A6"
+		// "S" : false,
+		// "D" : false,
+		// "F" : false
+		"S" : player.playbackRate = 4,
+		"D" : player.playbackRate = 1,
+		"F" : player.playbackRate = 0.5
+	};
+
+
+	nx.onload = function(){
+		typewriter.on("*", function(data){
+			if (data.on === 1){
+				if (playBackSpeed[data.key]){
+					player.playbackRate(playBackSpeed[data.key]);
+				}
+			} else {
+				//player.triggerRelease();
+			}
+		});
+	};
+		
+
+		</script>
+	</body>
+</html>
+
+
