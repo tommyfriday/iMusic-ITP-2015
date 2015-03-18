@@ -14,16 +14,23 @@ var myChorus = function(voice1, voice2, voice3){
 //public method, start the sample
 myChorus.prototype.start = function(){
 	console.log(this.type + "start the sample");
-	this.v1 += this.playSample;
-	this.v2 += this.playSample;
-	this.v3 += this.playSample;
+
+	//if sample loads
+	//if ()
+
+	// this.v1 += this.playSample;
+	// this.v2 += this.playSample;
+	// this.v3 += this.playSample;
 };
 
 myChorus.prototype.stop = function(){
 	console.log(this.type + "stop the sample");
-	this.v1 += this.playSample;
-	this.v2 += this.playSample;
-	this.v3 += this.playSample;
+
+
+
+	// this.v1 += this.playSample;
+	// this.v2 += this.playSample;
+	// this.v3 += this.playSample;
 };
 
 
@@ -31,10 +38,10 @@ myChorus.prototype.stop = function(){
 //using -- intervalToFrequencyRatio(x)
 
 //public method
-Ball.prototype.bounceTest = function(){
-	if (this.x < 0){
-		this.directionX = -this.directionX;
-	}	else if (this.y < 0){
-		this.directionY = -this.directionY;
-	}
-}
+// Ball.prototype.bounceTest = function(){
+// 	if (this.x < 0){
+// 		this.directionX = -this.directionX;
+// 	}	else if (this.y < 0){
+// 		this.directionY = -this.directionY;
+// 	}
+// }

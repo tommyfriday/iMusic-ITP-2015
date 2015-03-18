@@ -18,7 +18,13 @@
 			}
 		}
 
-		var player = new Tone.Player("./samples/krackatoa_-_06_-_Rattle_your_Cage.mp3", function(){
+		var player = new Tone.Player("./samples/tom_pitch.mp3", function(){
+			loaded++;
+			testLoaded();
+
+		});
+
+			var player2 = new Tone.Player("./samples/congodrum.mp3", function(){
 			loaded++;
 			testLoaded();
 		});
@@ -26,12 +32,18 @@
 		//invoked when the queued sample is done loading
 		Tone.Buffer.onload = function(){
 		player.start();
+		player2.start();
    	 	console.log("everything is loaded");
 		};
 
 		player.toMaster();
+		player2.toMaster();
 		player.loop = true;
+		player2.loop = true;
 		player.retrigger = true;
+		player2.retrigger = true;
+
+		
 
 		nx.onload = function(){
 
@@ -51,6 +63,22 @@
 			if (data.on === 1){
 				if (playBackSpeed[data.key]){
 					player.playbackRate(playBackSpeed[data.key]);
+				}
+			} else {
+				//player.triggerRelease();
+			}
+		});
+	
+
+	vinyl3.on("*", function(data){
+			//callback inside the function 
+			//next line of code is where the mp3 PBR is mapped to the speed of the Vinyl object
+			//we are changing the players PBR based on the user interaction speed of the Vinyl GUI
+			player2.playbackRate = data.speed;
+			console.log(data);
+			if (data.on === 1){
+				if (playBackSpeed[data.key]){
+					player2.playbackRate(playBackSpeed[data.key]);
 				}
 			} else {
 				//player.triggerRelease();
