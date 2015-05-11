@@ -1,3 +1,7 @@
+// Tommy Payne :: Interactive Music Midterm
+// Two vinyl DJ decks
+// Scratch in the browser		
+
 		Tone.Transport.start();
 		var chorus = new Tone.Chorus(4, 2.5, 0.5);
 
